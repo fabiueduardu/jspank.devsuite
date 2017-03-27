@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jspank.devsuite.app", "..\src\jspank.devsuite.app\jspank.devsuite.app.csproj", "{A793F18E-9A9D-4E7A-BE96-4E18A7C2CD9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jspank.devsuite.domain", "..\src\jspank.devsuite.domain\jspank.devsuite.domain.csproj", "{9790EB47-5EFC-4E9E-BDD9-3F5DCE85054A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jspank.devsuite.infra", "..\src\jspank.devsuite.infra\jspank.devsuite.infra.csproj", "{55DA5165-8059-4DEE-83EB-8D1450F90070}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jspank.devsuite.test", "..\src\jspank.devsuite.test\jspank.devsuite.test.csproj", "{FDC5C39D-5123-4D86-BBD2-C74671F37B54}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A793F18E-9A9D-4E7A-BE96-4E18A7C2CD9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A793F18E-9A9D-4E7A-BE96-4E18A7C2CD9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A793F18E-9A9D-4E7A-BE96-4E18A7C2CD9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A793F18E-9A9D-4E7A-BE96-4E18A7C2CD9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9790EB47-5EFC-4E9E-BDD9-3F5DCE85054A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9790EB47-5EFC-4E9E-BDD9-3F5DCE85054A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9790EB47-5EFC-4E9E-BDD9-3F5DCE85054A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9790EB47-5EFC-4E9E-BDD9-3F5DCE85054A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55DA5165-8059-4DEE-83EB-8D1450F90070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55DA5165-8059-4DEE-83EB-8D1450F90070}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55DA5165-8059-4DEE-83EB-8D1450F90070}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55DA5165-8059-4DEE-83EB-8D1450F90070}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDC5C39D-5123-4D86-BBD2-C74671F37B54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDC5C39D-5123-4D86-BBD2-C74671F37B54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDC5C39D-5123-4D86-BBD2-C74671F37B54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDC5C39D-5123-4D86-BBD2-C74671F37B54}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
