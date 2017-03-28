@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace jspank.devsuite.domain.Entitie
+namespace jspank.devsuite.domain.entitie
 {
     public class User
     {

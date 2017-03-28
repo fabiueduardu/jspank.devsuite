@@ -1,11 +1,11 @@
-﻿using System.Data.SQLite;
-using Dapper;
-using jspank.devsuite.domain.Entitie;
-using jspank.devsuite.domain.Service;
+﻿using Dapper;
+using jspank.devsuite.domain.entitie;
+using jspank.devsuite.domain.repository;
+using jspank.devsuite.domain.service;
+using System.Data.SQLite;
 using System.Linq;
-using jspank.devsuite.domain.Repository;
 
-namespace jspank.devsuite.infra.Repository
+namespace jspank.devsuite.infra.repository
 {
     public class UserRepository : BaseRepository, IUserRepository
     {

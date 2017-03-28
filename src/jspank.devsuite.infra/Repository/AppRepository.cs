@@ -1,18 +1,34 @@
-﻿using System.Data.SQLite;
-using Dapper;
+﻿using Dapper;
+using jspank.devsuite.domain.entitie;
+using jspank.devsuite.domain.repository;
+using jspank.devsuite.domain.service;
+using System.Collections.ObjectModel;
+using System.Data.SQLite;
 using System.IO;
+using System.Linq;
 
-namespace jspank.devsuite.infra.Repository
+namespace jspank.devsuite.infra.repository
 {
-    public class AppRepository : BaseRepository
+    public class AppRepository : BaseRepository, IAppRepository
     {
-        public bool Create(bool forceRenew = false)
+        public void CreateOrUpdate(bool forceNewDb = false)
+        {
+            var alreadyExistsDb = false;
+            var db_path = InitializeDb(forceNewDb, out alreadyExistsDb);
+
+            if (!alreadyExistsDb)
+                this.Create();
+            else
+                this.Update();
+        }
+
+        void Create(bool forceNewDb = false)
         {
             var query =
-            @"
-                  CREATE TABLE IF NOT EXISTS version
+                  @"
+                CREATE TABLE IF NOT EXISTS version
                       (
-                         cd_version INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                         cd_version INTEGER NOT NULL PRIMARY KEY,
                          nm_version VARCHAR(10) NOT NULL,
                          dc_version VARCHAR(100) NOT NULL,
                          dh_create DATETIME NOT NULL
@@ -29,16 +45,48 @@ namespace jspank.devsuite.infra.Repository
     
             ";
 
-            using (var dbCon = new SQLiteConnection(string.Concat("Data Source=", this.InitializeDb(forceRenew))))
+            using (var dbCon = new SQLiteConnection(string.Concat("Data Source=", base.db_path)))
                 dbCon.Execute(query);
 
-            return true;
+            this.AddVersion(1, "1.0", "Install");
         }
 
-        string InitializeDb(bool forceRenew)
+        void Update()
         {
-            if (forceRenew && File.Exists(base.db_path))
+            var collection = new Collection<Version>();
+
+            collection.Add(new Version { cd_version = 1 });
+            collection.Add(new Version { cd_version = 2, nm_version = "1.1", dc_version = "Refresh", dc_query = "" });
+
+            using (var dbCon = new SQLiteConnection(string.Concat("Data Source=", base.db_path)))
+            {
+                var cd_version = dbCon.ExecuteScalar<int>("SELECT max(cd_version) FROM version");
+
+                foreach (var version in collection.Where(a => a.cd_version > cd_version).OrderBy(a => a.cd_version))
+                    this.AddVersion(version.cd_version, version.nm_version, version.dc_version);
+
+            }
+        }
+
+        bool AddVersion(int cd_version, string nm_version, string dc_version)
+        {
+            var query =
+            @"
+                INSERT INTO version(cd_version,nm_version,dc_version,dh_create) VALUES(@cd_version,@nm_version,@dc_version,@dh_create)
+            ";
+
+            using (var dbCon = new SQLiteConnection(string.Concat("Data Source=", base.db_path)))
+                return dbCon.Execute(query, new { cd_version = cd_version, nm_version = nm_version, dc_version = dc_version, dh_create = UtilService.Date }) > 0;
+        }
+
+        string InitializeDb(bool forceNewDb, out bool alreadyExistsDb)
+        {
+            alreadyExistsDb = File.Exists(base.db_path);
+            if (forceNewDb && alreadyExistsDb)
+            {
                 File.Delete(base.db_path);
+                alreadyExistsDb = false;
+            }
 
             return base.db_path;
         }

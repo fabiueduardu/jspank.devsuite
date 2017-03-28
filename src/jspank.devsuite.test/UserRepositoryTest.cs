@@ -1,10 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using jspank.devsuite.infra.Repository;
-using jspank.devsuite.domain.Entitie;
+﻿using jspank.devsuite.domain.entitie;
+using jspank.devsuite.domain.service;
+using jspank.devsuite.infra.repository;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace jspank.devsuite.test
 {
-    [TestClass]
+  //  [TestClass]
     public class UserRepositoryTest : BaseTest
     {
         [TestMethod]
@@ -39,7 +40,8 @@ namespace jspank.devsuite.test
         [TestInitialize]
         public void TestInitialize_Local()
         {
-            new AppRepositoryTest().create();
+            var service = base.Resolve<IAppService>();
+            service.CreateOrUpdate(true);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace jspank.devsuite.domain.Service
+namespace jspank.devsuite.domain.service
 {
     public static class UtilService
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace jspank.devsuite.infra.Repository
+namespace jspank.devsuite.infra.repository
 {
     public abstract class BaseRepository : IDisposable
     {

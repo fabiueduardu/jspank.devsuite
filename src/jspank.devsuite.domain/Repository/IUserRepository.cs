@@ -1,6 +1,6 @@
-﻿using jspank.devsuite.domain.Entitie;
+﻿using jspank.devsuite.domain.entitie;
 
-namespace jspank.devsuite.domain.Repository
+namespace jspank.devsuite.domain.repository
 {
     public interface IUserRepository
     {

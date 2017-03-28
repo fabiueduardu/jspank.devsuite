@@ -36,7 +36,12 @@
     <Compile Include="Entitie\Version.cs" />
     <Compile Include="Entitie\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\IAppRepository.cs" />
     <Compile Include="Repository\IUserRepository.cs" />
+    <Compile Include="Service\AppService.cs" />
+    <Compile Include="Service\IAppService.cs" />
+    <Compile Include="Service\IUserService.cs" />
+    <Compile Include="Service\UserService.cs" />
     <Compile Include="Service\UtilService.cs" />
   </ItemGroup>
   <ItemGroup />
