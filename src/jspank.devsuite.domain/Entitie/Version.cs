@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace jspank.devsuite.domain.entitie
+namespace JSpank.DevSuite.Domain.Entitie
 {
     public class Version
     {

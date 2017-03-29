@@ -1,4 +1,4 @@
-﻿namespace jspank.devsuite.domain.repository
+﻿namespace JSpank.DevSuite.Domain.Repository
 {
     public interface IAppRepository
     {

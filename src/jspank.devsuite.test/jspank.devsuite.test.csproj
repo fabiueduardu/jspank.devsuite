@@ -6,8 +6,8 @@
     <ProjectGuid>{FDC5C39D-5123-4D86-BBD2-C74671F37B54}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>jspank.devsuite.test</RootNamespace>
-    <AssemblyName>jspank.devsuite.test</AssemblyName>
+    <RootNamespace>JSpank.DevSuite.Test</RootNamespace>
+    <AssemblyName>JSpank.DevSuite.Test</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -80,19 +80,20 @@
   <ItemGroup>
     <Compile Include="core\ioc\IocContainer.cs" />
     <Compile Include="IAppServiceTest.cs" />
+    <Compile Include="ITimeSheetServiceTest.cs" />
     <Compile Include="IUserServiceTest.cs" />
     <Compile Include="UserRepositoryTest.cs" />
     <Compile Include="BaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\jspank.devsuite.domain\jspank.devsuite.domain.csproj">
+    <ProjectReference Include="..\jspank.devsuite.domain\JSpank.DevSuite.Domain.csproj">
       <Project>{9790eb47-5efc-4e9e-bdd9-3f5dce85054a}</Project>
-      <Name>jspank.devsuite.domain</Name>
+      <Name>JSpank.DevSuite.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\jspank.devsuite.infra\jspank.devsuite.infra.csproj">
+    <ProjectReference Include="..\jspank.devsuite.infra\JSpank.DevSuite.Infra.csproj">
       <Project>{55da5165-8059-4dee-83eb-8d1450f90070}</Project>
-      <Name>jspank.devsuite.infra</Name>
+      <Name>JSpank.DevSuite.Infra</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

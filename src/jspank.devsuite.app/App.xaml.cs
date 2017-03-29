@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Windows;
 
-namespace jspank.devsuite.app
+namespace JSpank.DevSuite.App
 {
     /// <summary>
     /// Interaction logic for App.xaml

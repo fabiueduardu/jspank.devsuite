@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace jspank.devsuite.infra.repository
+namespace JSpank.DevSuite.Infra.Repository
 {
     public abstract class BaseRepository : IDisposable
     {
@@ -14,7 +14,7 @@ namespace jspank.devsuite.infra.repository
 
         public void Dispose()
         {
-            //   throw new NotImplementedException();
+            
         }
     }
 }

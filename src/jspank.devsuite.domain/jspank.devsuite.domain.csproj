@@ -7,8 +7,8 @@
     <ProjectGuid>{9790EB47-5EFC-4E9E-BDD9-3F5DCE85054A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>jspank.devsuite.domain</RootNamespace>
-    <AssemblyName>jspank.devsuite.domain</AssemblyName>
+    <RootNamespace>JSpank.DevSuite.Domain</RootNamespace>
+    <AssemblyName>JSpank.DevSuite.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,13 +33,18 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entitie\TimeSheetActivity.cs" />
+    <Compile Include="Entitie\TimeSheet.cs" />
     <Compile Include="Entitie\Version.cs" />
     <Compile Include="Entitie\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IAppRepository.cs" />
+    <Compile Include="Repository\ITimeSheetRepository.cs" />
     <Compile Include="Repository\IUserRepository.cs" />
     <Compile Include="Service\AppService.cs" />
     <Compile Include="Service\IAppService.cs" />
+    <Compile Include="Service\TimeSheetService.cs" />
+    <Compile Include="Service\ITimeSheetService.cs" />
     <Compile Include="Service\IUserService.cs" />
     <Compile Include="Service\UserService.cs" />
     <Compile Include="Service\UtilService.cs" />

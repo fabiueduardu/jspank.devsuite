@@ -1,8 +1,8 @@
 ﻿using System;
-using jspank.devsuite.domain.entitie;
-using jspank.devsuite.domain.repository;
+using JSpank.DevSuite.Domain.Entitie;
+using JSpank.DevSuite.Domain.Repository;
 
-namespace jspank.devsuite.domain.service
+namespace JSpank.DevSuite.Domain.Service
 {
     public class UserService : IUserService
     {

@@ -1,4 +1,4 @@
-﻿<Application x:Class="jspank.devsuite.app.App"
+﻿<Application x:Class="JSpank.DevSuite.App.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">

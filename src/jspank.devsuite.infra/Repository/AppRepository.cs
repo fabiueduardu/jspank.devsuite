@@ -1,13 +1,13 @@
 ﻿using Dapper;
-using jspank.devsuite.domain.entitie;
-using jspank.devsuite.domain.repository;
-using jspank.devsuite.domain.service;
+using JSpank.DevSuite.Domain.Entitie;
+using JSpank.DevSuite.Domain.Repository;
+using JSpank.DevSuite.Domain.Service;
 using System.Collections.ObjectModel;
 using System.Data.SQLite;
 using System.IO;
 using System.Linq;
 
-namespace jspank.devsuite.infra.repository
+namespace JSpank.DevSuite.Infra.Repository
 {
     public class AppRepository : BaseRepository, IAppRepository
     {
@@ -40,9 +40,29 @@ namespace jspank.devsuite.infra.repository
                          lg_user VARCHAR(100) NOT NULL,
                          dh_create DATETIME NOT NULL
                     );
+                 CREATE UNIQUE INDEX IF NOT EXISTS ix_un_user ON user (lg_user);
 
-                CREATE UNIQUE INDEX IF NOT EXISTS ix_un_user ON user (lg_user)
-    
+                 CREATE TABLE IF NOT EXISTS timesheet
+                      (
+                         cd_time INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                         cd_user INTEGER NOT NULL, 
+                         dh_input DATETIME NOT NULL,
+                         dh_create DATETIME NOT NULL,
+
+                         FOREIGN KEY(cd_user) REFERENCES user(cd_user)
+                      );
+                CREATE UNIQUE INDEX IF NOT EXISTS ix_timesheet ON timesheet (dh_input);
+
+                CREATE TABLE IF NOT EXISTS timesheet_activity
+                      (
+                         cd_activity INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                         cd_user INTEGER NOT NULL,
+                         dh_input DATETIME NOT NULL,
+                         dc_activity VARCHAR(200) NOT NULL,
+
+                         FOREIGN KEY(cd_user) REFERENCES user(cd_user)
+                      );
+                CREATE UNIQUE INDEX IF NOT EXISTS ix_timesheet_activity ON timesheet_activity (dh_input);
             ";
 
             using (var dbCon = new SQLiteConnection(string.Concat("Data Source=", base.db_path)))

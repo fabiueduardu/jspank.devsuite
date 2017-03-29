@@ -1,9 +1,10 @@
 ﻿using DryIoc;
-using jspank.devsuite.domain.repository;
-using jspank.devsuite.domain.service;
-using jspank.devsuite.infra.repository;
+using JSpank.DevSuite.Domain.Repository;
+using JSpank.DevSuite.Domain.Service;
+using JSpank.DevSuite.Infra.Repository;
+using JSpank.DevSuite.Infra.Repository;
 
-namespace jspank.devsuite.test.core.ioc
+namespace JSpank.DevSuite.Test.Core.Ioc
 {
     public class IocContainer
     {
@@ -12,10 +13,17 @@ namespace jspank.devsuite.test.core.ioc
             container = container ?? new Container();
 
             var mode = Reuse.Singleton;
+
+            //Repo
             container.Register<IUserRepository, UserRepository>(mode);
+            container.Register<IAppRepository, AppRepository>(mode);
+            container.Register<ITimeSheetRepository, TimeSheetRepository>(mode);
+
+            //Services
             container.Register<IUserService, UserService>(mode);
             container.Register<IAppService, AppService>(mode);
-            container.Register<IAppRepository, AppRepository>(mode);
+            container.Register<ITimeSheetService, TimeSheetService>(mode);
+
         }
     }
 }

@@ -1,11 +1,10 @@
 ﻿
-using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using jspank.devsuite.test.core.ioc;
-using jspank.devsuite.domain.service;
 using DryIoc;
+using JSpank.DevSuite.Test.Core.Ioc;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
-namespace jspank.devsuite.test
+namespace JSpank.DevSuite.Test
 {
     [TestClass]
     public class BaseTest

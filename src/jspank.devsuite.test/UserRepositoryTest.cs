@@ -1,9 +1,9 @@
-﻿using jspank.devsuite.domain.entitie;
-using jspank.devsuite.domain.service;
-using jspank.devsuite.infra.repository;
+﻿using JSpank.DevSuite.Domain.Entitie;
+using JSpank.DevSuite.Domain.Service;
+using JSpank.DevSuite.Infra.Repository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace jspank.devsuite.test
+namespace JSpank.DevSuite.Test
 {
   //  [TestClass]
     public class UserRepositoryTest : BaseTest

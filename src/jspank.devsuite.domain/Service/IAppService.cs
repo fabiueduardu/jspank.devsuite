@@ -1,4 +1,4 @@
-﻿namespace jspank.devsuite.domain.service
+﻿namespace JSpank.DevSuite.Domain.Service
 {
     public interface IAppService
     {

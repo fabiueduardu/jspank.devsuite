@@ -1,7 +1,7 @@
-﻿using jspank.devsuite.domain.service;
+﻿using JSpank.DevSuite.Domain.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace jspank.devsuite.test
+namespace JSpank.DevSuite.Test
 {
     [TestClass]
     public class IUserServiceTest : BaseTest

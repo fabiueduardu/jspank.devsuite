@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26206.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jspank.devsuite.app", "..\src\jspank.devsuite.app\jspank.devsuite.app.csproj", "{A793F18E-9A9D-4E7A-BE96-4E18A7C2CD9C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSpank.DevSuite.App", "..\src\jspank.devsuite.app\JSpank.DevSuite.App.csproj", "{A793F18E-9A9D-4E7A-BE96-4E18A7C2CD9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jspank.devsuite.domain", "..\src\jspank.devsuite.domain\jspank.devsuite.domain.csproj", "{9790EB47-5EFC-4E9E-BDD9-3F5DCE85054A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSpank.DevSuite.Domain", "..\src\jspank.devsuite.domain\JSpank.DevSuite.Domain.csproj", "{9790EB47-5EFC-4E9E-BDD9-3F5DCE85054A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jspank.devsuite.infra", "..\src\jspank.devsuite.infra\jspank.devsuite.infra.csproj", "{55DA5165-8059-4DEE-83EB-8D1450F90070}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSpank.DevSuite.Infra", "..\src\jspank.devsuite.infra\JSpank.DevSuite.Infra.csproj", "{55DA5165-8059-4DEE-83EB-8D1450F90070}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jspank.devsuite.test", "..\src\jspank.devsuite.test\jspank.devsuite.test.csproj", "{FDC5C39D-5123-4D86-BBD2-C74671F37B54}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSpank.DevSuite.Test", "..\src\jspank.devsuite.test\JSpank.DevSuite.Test.csproj", "{FDC5C39D-5123-4D86-BBD2-C74671F37B54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

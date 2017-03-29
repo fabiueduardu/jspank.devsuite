@@ -7,8 +7,8 @@
     <ProjectGuid>{55DA5165-8059-4DEE-83EB-8D1450F90070}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>jspank.devsuite.infra</RootNamespace>
-    <AssemblyName>jspank.devsuite.infra</AssemblyName>
+    <RootNamespace>JSpank.DevSuite.Infra</RootNamespace>
+    <AssemblyName>JSpank.DevSuite.Infra</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>4bf5b5ac</NuGetPackageImportStamp>
@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\TimeSheetRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Repository\AppRepository.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
@@ -72,9 +73,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\jspank.devsuite.domain\jspank.devsuite.domain.csproj">
+    <ProjectReference Include="..\jspank.devsuite.domain\JSpank.DevSuite.Domain.csproj">
       <Project>{9790eb47-5efc-4e9e-bdd9-3f5dce85054a}</Project>
-      <Name>jspank.devsuite.domain</Name>
+      <Name>JSpank.DevSuite.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
