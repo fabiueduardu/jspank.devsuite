@@ -118,6 +118,12 @@
     <Content Include="resources\AppInitActivityTargetDirectory\folderbackup\read.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="resources\AppInitActivityTargetDirectory\folderignore\read.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resources\AppInitActivityTargetDirectory\ignore.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="resources\AppInitActivityTargetDirectory\read.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

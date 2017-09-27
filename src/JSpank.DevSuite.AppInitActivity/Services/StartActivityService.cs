@@ -1,4 +1,5 @@
-﻿using JSpank.DevSuite.Domain.Abstraction;
+﻿using JSpank.DevSuite.AppInitActivity.Definitions;
+using JSpank.DevSuite.Domain.Abstraction;
 using JSpank.DevSuite.Domain.Service;
 using System;
 using System.Collections.Generic;
@@ -12,37 +13,6 @@ namespace JSpank.DevSuite.AppInitActivity.Services
     public class StartActivityService : IStartActivityService
     {
         readonly ILogger Logger;
-
-        const string searchPatternDirectory = "*";
-        const string searchPatternFile = searchPatternDirectory;
-        const string zipExtension = ".zip";
-        const string appKeyTargetDirectory = "AppInitActivity.TargetDirectory";
-        const string appKeyDestinationDirectory = "AppInitActivity.DestinationDirectory";
-        const string appKeyDestinationDirectoryFormatDate = "AppInitActivity.DestinationDirectoryFormatDate";
-
-        private string AppKeyTargetDirectory
-        {
-            get
-            {
-                return ConfigurationManager.AppSettings[appKeyTargetDirectory];
-            }
-        }
-
-        private string AppKeyDestinationDirectory
-        {
-            get
-            {
-                return ConfigurationManager.AppSettings[appKeyDestinationDirectory];
-            }
-        }
-
-        private string AppKeyDestinationDirectoryFormatDate
-        {
-            get
-            {
-                return ConfigurationManager.AppSettings[appKeyDestinationDirectoryFormatDate];
-            }
-        }
 
         public StartActivityService(ILogger Logger)
         {
@@ -62,50 +32,92 @@ namespace JSpank.DevSuite.AppInitActivity.Services
 
         private IEnumerable<string> Validate()
         {
-            if (string.IsNullOrEmpty(this.AppKeyTargetDirectory))
-                yield return "AppKeyTargetDirectoty is inválid!";
+            if (string.IsNullOrEmpty(this.AppKeyValue(AppInitActivityDefinition.AppKeyTargetDirectory)))
+                yield return string.Format(AppInitActivityDefinition.MessageInvalid, "AppKeyTargetDirectoty");
 
-            if (string.IsNullOrEmpty(this.AppKeyDestinationDirectory))
-                yield return "AppKeyDestinationDirectoty is inválid!";
+            if (string.IsNullOrEmpty(this.AppKeyValue(AppInitActivityDefinition.AppKeyDestinationDirectory)))
+                yield return string.Format(AppInitActivityDefinition.MessageInvalid, "AppKeyDestinationDirectory");
         }
 
         private void Start_Copy()
         {
-            var targetDirectory = new DirectoryInfo(this.AppKeyTargetDirectory);
-            var destinationDirectotyTempPath = string.Concat(this.AppKeyDestinationDirectory, Guid.NewGuid(), "/");
-            var destinationDirectotyTemp = Directory.CreateDirectory(destinationDirectotyTempPath);
+            var targetDirectory = new DirectoryInfo(this.AppKeyValue(AppInitActivityDefinition.AppKeyTargetDirectory));
+            var destinationDirectoryTempPath = string.Concat(this.AppKeyValue(AppInitActivityDefinition.AppKeyDestinationDirectory), Guid.NewGuid(), "/");
+            var destinationDirectotyTemp = Directory.CreateDirectory(destinationDirectoryTempPath);
 
-
-            this.Copy_Files_To(targetDirectory, destinationDirectotyTempPath);
-            foreach (var value in targetDirectory.GetDirectories(searchPatternDirectory, SearchOption.AllDirectories))
-            {
-                var directoryNew = Directory.CreateDirectory(string.Concat(destinationDirectotyTempPath, value.FullName.Replace(targetDirectory.FullName, string.Empty)));
-                this.Copy_Files_To(value, directoryNew.FullName);
-            }
+            this.Copy_Files_To(targetDirectory, destinationDirectoryTempPath);
+            this.Copy_Directory_To(targetDirectory, destinationDirectoryTempPath);
 
             this.Zip(destinationDirectotyTemp.FullName);
             destinationDirectotyTemp.Delete(true);
         }
 
-        private void Copy_Files_To(DirectoryInfo directoryInfo, string directoryDestination)
+        private void Copy_Directory_To(DirectoryInfo targetDirectory, string destinationDirectoryTempPath)
         {
-            foreach (var value in directoryInfo.GetFiles(searchPatternFile))
-                File.Copy(value.FullName, string.Concat(directoryDestination, "/", value.Name));
+            foreach (var value in targetDirectory.GetDirectories(AppInitActivityDefinition.SearchPatternDirectory, SearchOption.AllDirectories))
+            {
+                if (this.IgnoreFolders.Contains(value.Name))
+                    continue;
+
+                var directoryNew = Directory.CreateDirectory(string.Concat(destinationDirectoryTempPath, value.FullName.Replace(targetDirectory.FullName, string.Empty)));
+                this.Copy_Files_To(value, directoryNew.FullName);
+            }
         }
 
-        void Zip(string sourceDirectoryName)
+        private void Copy_Files_To(DirectoryInfo directoryInfo, string directoryDestination)
         {
-            var zipFormatName = UtilService.Date.ToString(this.AppKeyDestinationDirectoryFormatDate);
-            var zipFileName = string.Concat(this.AppKeyDestinationDirectory, zipFormatName, zipExtension);
+            foreach (var value in directoryInfo.GetFiles(AppInitActivityDefinition.SearchPatternFile))
+            {
+                if (this.IgnoreFiles.Contains(value.Name))
+                    continue;
+
+                File.Move(value.FullName, string.Concat(directoryDestination, "/", value.Name));
+            }
+        }
+
+        private void Zip(string sourceDirectoryName)
+        {
+            var zipFormatName = UtilService.Date.ToString(this.AppKeyValue(AppInitActivityDefinition.AppKeyDestinationDirectoryFormatDate));
+            var zipFileName = string.Concat(this.AppKeyValue(AppInitActivityDefinition.AppKeyDestinationDirectory), zipFormatName, AppInitActivityDefinition.ZipExtension);
             var zipCount = 1;
 
             while (File.Exists(zipFileName))
             {
-                zipFileName = string.Concat(this.AppKeyDestinationDirectory, zipFormatName, "_", zipCount, zipExtension);
+                zipFileName = string.Concat(this.AppKeyValue(AppInitActivityDefinition.AppKeyDestinationDirectory), zipFormatName, "_", zipCount, AppInitActivityDefinition.ZipExtension);
                 zipCount++;
             }
 
             ZipFile.CreateFromDirectory(sourceDirectoryName, zipFileName);
         }
+
+        private string AppKeyValue(string key)
+        {
+            return ConfigurationManager.AppSettings[key] as string;
+        }
+
+        private IEnumerable<string> AppKeyValueIgnoreItens(string key)
+        {
+            var values = this.AppKeyValue(key);
+            if (!string.IsNullOrEmpty(values))
+                foreach (var value in values.Split(AppInitActivityDefinition.AppKeySplitDelimiter))
+                    yield return value;
+        }
+
+        private IEnumerable<string> IgnoreFolders
+        {
+            get
+            {
+                return this.AppKeyValueIgnoreItens(AppInitActivityDefinition.AppKeyIgnoreFolder);
+            }
+        }
+
+        private IEnumerable<string> IgnoreFiles
+        {
+            get
+            {
+                return this.AppKeyValueIgnoreItens(AppInitActivityDefinition.AppKeyIgnoreFile);
+            }
+        }
+
     }
 }
