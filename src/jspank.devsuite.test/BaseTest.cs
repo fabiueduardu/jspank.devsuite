@@ -1,6 +1,4 @@
-﻿
-using DryIoc;
-using JSpank.DevSuite.Test.Core.Ioc;
+﻿using JSpank.DevSuite.Ioc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -9,11 +7,11 @@ namespace JSpank.DevSuite.Test
     [TestClass]
     public class BaseTest
     {
-        Container _IocContainer;
+        IocResolver iocResolver;
 
         protected T Resolve<T>()
         {
-            return this._IocContainer.Resolve<T>();
+            return iocResolver.Resolve<T>();
         }
 
         protected string Key5
@@ -40,7 +38,7 @@ namespace JSpank.DevSuite.Test
         [TestInitialize]
         public void TestInitialize()
         {
-            IocContainer.Register(ref this._IocContainer);
+            iocResolver = new IocResolver();
         }
     }
 }

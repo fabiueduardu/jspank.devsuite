@@ -1,5 +1,5 @@
-﻿using JSpank.DevSuite.AppInitActivity.Services;
-using JSpank.DevSuite.Domain.Abstraction;
+﻿using JSpank.DevSuite.Domain.Service;
+using JSpank.DevSuite.Ioc;
 
 namespace JSpank.DevSuite.AppInitActivity
 {
@@ -7,8 +7,9 @@ namespace JSpank.DevSuite.AppInitActivity
     {
         static void Main(string[] args)
         {
-            ILogger logger = null;
-            new StartActivityService(logger).Start();
+            var iocResolver = new IocResolver();
+            var startActivityService = iocResolver.Resolve<IStartActivityService>();
+            startActivityService.Start();
         }
     }
 }

@@ -39,9 +39,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DryIoc, Version=2.10.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\sln\packages\DryIoc.dll.2.10.3\lib\net40\DryIoc.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\sln\packages\EntityFramework.6.0.0\lib\net40\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -81,7 +78,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="core\ioc\IocContainer.cs" />
     <Compile Include="IStartActivityServiceTest.cs" />
     <Compile Include="IAppServiceTest.cs" />
     <Compile Include="ITimeSheetServiceTest.cs" />
@@ -102,6 +98,10 @@
     <ProjectReference Include="..\jspank.devsuite.infra\JSpank.DevSuite.Infra.csproj">
       <Project>{55da5165-8059-4dee-83eb-8d1450f90070}</Project>
       <Name>JSpank.DevSuite.Infra</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JSpank.DevSuite.Ioc\JSpank.DevSuite.Ioc.csproj">
+      <Project>{461e80e2-f0af-4ac8-9ba6-777cf7717f63}</Project>
+      <Name>JSpank.DevSuite.Ioc</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

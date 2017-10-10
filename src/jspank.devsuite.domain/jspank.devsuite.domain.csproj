@@ -34,9 +34,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.IO.Compression.FileSystem" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstraction\ILogger.cs" />
+    <Compile Include="Definition\StartActivityDefinition.cs" />
     <Compile Include="Entitie\TimeSheetActivity.cs" />
     <Compile Include="Entitie\TimeSheet.cs" />
     <Compile Include="Entitie\Version.cs" />
@@ -48,6 +51,7 @@
     <Compile Include="Service\AppService.cs" />
     <Compile Include="Service\IAppService.cs" />
     <Compile Include="Service\IStartActivityService.cs" />
+    <Compile Include="Service\StartActivityService.cs" />
     <Compile Include="Service\TimeSheetService.cs" />
     <Compile Include="Service\ITimeSheetService.cs" />
     <Compile Include="Service\IUserService.cs" />

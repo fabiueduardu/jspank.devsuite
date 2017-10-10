@@ -1,5 +1,5 @@
-﻿using JSpank.DevSuite.AppInitActivity.Services;
-using JSpank.DevSuite.Domain.Abstraction;
+﻿using JSpank.DevSuite.Domain.Abstraction;
+using JSpank.DevSuite.Domain.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace JSpank.DevSuite.Test
@@ -10,10 +10,7 @@ namespace JSpank.DevSuite.Test
         [TestMethod]
         public void Start()
         {
-            var logger = base.Resolve<ILogger>();
-            //   var service = base.Resolve<IStartActivityService>();
-
-            var service = new StartActivityService(logger);//TODO - ioc this;
+            var service = base.Resolve<IStartActivityService>();
             service.Start();
         }
     }

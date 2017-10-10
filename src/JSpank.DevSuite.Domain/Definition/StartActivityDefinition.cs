@@ -1,6 +1,6 @@
-﻿namespace JSpank.DevSuite.AppInitActivity.Definitions
+﻿namespace JSpank.DevSuite.Domain.Definition
 {
-    public sealed class AppInitActivityDefinition
+    public sealed class StartActivityDefinition
     {
         public const string SearchPatternDirectory = "*";
         public const string SearchPatternFile = SearchPatternDirectory;
@@ -14,5 +14,6 @@
         public const string AppKeyIgnoreFolder = "AppInitActivity.IgnoreFolder";
 
         public const string MessageInvalid = "{0} is inválid";
+        public const string Message = "Message: {0}";
     }
 }

@@ -1,15 +1,15 @@
 ﻿using DryIoc;
-using JSpank.DevSuite.AppInitActivity.Services;
 using JSpank.DevSuite.Domain.Abstraction;
 using JSpank.DevSuite.Domain.Repository;
 using JSpank.DevSuite.Domain.Service;
 using JSpank.DevSuite.Infra.Repository;
 
-namespace JSpank.DevSuite.Test.Core.Ioc
+
+namespace JSpank.DevSuite.Ioc
 {
-    public class IocContainer
+    internal class IocContainer
     {
-        public static void Register(ref Container container)
+        public void Register(ref Container container)
         {
             container = container ?? new Container();
 
