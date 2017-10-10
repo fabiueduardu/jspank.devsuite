@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2002
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSpank.DevSuite.App", "..\src\jspank.devsuite.app\JSpank.DevSuite.App.csproj", "{A793F18E-9A9D-4E7A-BE96-4E18A7C2CD9C}"
 EndProject
@@ -37,8 +37,8 @@ Global
 		{FDC5C39D-5123-4D86-BBD2-C74671F37B54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDC5C39D-5123-4D86-BBD2-C74671F37B54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDC5C39D-5123-4D86-BBD2-C74671F37B54}.Release|Any CPU.Build.0 = Release|Any CPU
-		{58D410F4-5105-4957-83F4-64A9A13D9131}.Debug|Any CPU.ActiveCfg = Release|Any CPU
-		{58D410F4-5105-4957-83F4-64A9A13D9131}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{58D410F4-5105-4957-83F4-64A9A13D9131}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58D410F4-5105-4957-83F4-64A9A13D9131}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58D410F4-5105-4957-83F4-64A9A13D9131}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58D410F4-5105-4957-83F4-64A9A13D9131}.Release|Any CPU.Build.0 = Release|Any CPU
 		{461E80E2-F0AF-4AC8-9BA6-777CF7717F63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

@@ -5,6 +5,7 @@
         public const string SearchPatternDirectory = "*";
         public const string SearchPatternFile = SearchPatternDirectory;
         public const string ZipExtension = ".zip";
+        public const string SummaryFileName = "summary.log";
         public const char AppKeySplitDelimiter = ';';
 
         public const string AppKeyTargetDirectory = "AppInitActivity.TargetDirectory";

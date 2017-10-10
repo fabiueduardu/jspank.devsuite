@@ -41,71 +41,70 @@ namespace JSpank.DevSuite.Domain.Service
 
         private void Start_Copy()
         {
-            var messages = new Collection<string>();
+            var result = new List<string>();
             var targetDirectory = new DirectoryInfo(this.AppKeyValue(StartActivityDefinition.AppKeyTargetDirectory));
             var destinationDirectoryTempPath = string.Concat(this.AppKeyValue(StartActivityDefinition.AppKeyDestinationDirectory), Guid.NewGuid(), "/");
             var destinationDirectotyTemp = Directory.CreateDirectory(destinationDirectoryTempPath);
 
-            this.Move_Files_To(targetDirectory, destinationDirectoryTempPath, ref messages);
-            this.Move_Directory_To(targetDirectory, destinationDirectoryTempPath, ref messages);
+            result.AddRange(this.Move_Files_To(targetDirectory, destinationDirectoryTempPath));
+            result.AddRange(this.Move_Directory_To(targetDirectory, destinationDirectoryTempPath));
+
+            if (result.Any())
+                File.WriteAllLines(string.Concat(destinationDirectotyTemp.FullName, StartActivityDefinition.SummaryFileName), result);
 
             this.Zip(destinationDirectotyTemp.FullName);
             destinationDirectotyTemp.Delete(true);
 
-            if (messages.Any())
-            {
-                foreach (var message in messages)
-                    Console.WriteLine(StartActivityDefinition.Message, message);
+            foreach (var value in result)
+                Console.WriteLine(StartActivityDefinition.Message, value);
+        }
 
-                Console.ReadKey();
+        private IEnumerable<string> Move_Directory_To(DirectoryInfo targetDirectory, string directoryDestination)
+        {
+            foreach (var value in targetDirectory.GetDirectories(StartActivityDefinition.SearchPatternDirectory))
+            {
+                if (this.IgnoreFolders.Contains(value.Name))
+                    continue;
+
+                var fullNAme = value.FullName;
+                try
+                {
+                    foreach (var value_file in value.GetFiles(StartActivityDefinition.SearchPatternFile, SearchOption.AllDirectories))
+                        fullNAme += string.Concat(Environment.NewLine, value_file.FullName);
+
+                    Microsoft.VisualBasic.FileIO.FileSystem.MoveDirectory(value.FullName, string.Concat(directoryDestination, "/", value.Name));
+                }
+                catch (Exception exp)
+                {
+                    //this.Logger.Write(exp); TODO
+                    fullNAme = string.Concat(fullNAme, Environment.NewLine, exp.Message);
+                    continue;
+                }
+
+                yield return fullNAme;
             }
         }
 
-        private void Move_Directory_To(DirectoryInfo targetDirectory, string directoryDestination, ref Collection<string> messages)
+        private IEnumerable<string> Move_Files_To(DirectoryInfo directoryInfo, string directoryDestination)
         {
-            if (!targetDirectory.Exists)
-                messages.Add(string.Format(StartActivityDefinition.MessageInvalid, targetDirectory.FullName));
-            else
+            foreach (var value in directoryInfo.GetFiles(StartActivityDefinition.SearchPatternFile))
             {
-                foreach (var value in targetDirectory.GetDirectories(StartActivityDefinition.SearchPatternDirectory))
+                if (this.IgnoreFiles.Contains(value.Name))
+                    continue;
+
+                var fullNAme = value.FullName;
+                try
                 {
-                    if (this.IgnoreFolders.Contains(value.Name))
-                        continue;
-
-                    try
-                    {
-                        Directory.Move(value.FullName, string.Concat(directoryDestination, "/", value.Name));
-                    }
-                    catch (Exception exp)
-                    {
-                        //this.Logger.Write(exp); TODO
-                        messages.Add(exp.Message);
-                    }
+                    File.Move(value.FullName, string.Concat(directoryDestination, "/", value.Name));
                 }
-            }
-        }
-
-        private void Move_Files_To(DirectoryInfo directoryInfo, string directoryDestination, ref Collection<string> messages)
-        {
-            if (!directoryInfo.Exists)
-                messages.Add(string.Format(StartActivityDefinition.MessageInvalid, directoryInfo.FullName));
-            else
-            {
-                foreach (var value in directoryInfo.GetFiles(StartActivityDefinition.SearchPatternFile))
+                catch (Exception exp)
                 {
-                    if (this.IgnoreFiles.Contains(value.Name))
-                        continue;
-
-                    try
-                    {
-                        File.Move(value.FullName, string.Concat(directoryDestination, "/", value.Name));
-                    }
-                    catch (Exception exp)
-                    {
-                        //this.Logger.Write(exp); TODO
-                        messages.Add(exp.Message);
-                    }
+                    //this.Logger.Write(exp); TODO
+                    fullNAme = string.Concat(fullNAme, Environment.NewLine, exp.Message);
+                    continue;
                 }
+
+                yield return fullNAme;
             }
         }
 
